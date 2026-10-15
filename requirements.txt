@@ -1,0 +1,13 @@
+# Runtime dependencies (tested with Python 3.12 and 3.13)
+numpy>=2.0,<3
+pandas>=2.2
+scipy>=1.13
+scikit-learn>=1.5
+scikit-survival>=0.23
+joblib>=1.4
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.7
+httpx>=0.27
+py7zr>=0.21
+matplotlib>=3.9

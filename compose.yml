@@ -1,0 +1,52 @@
+# Full local stack: Oncora Nexus plus a local Ollama language model.
+#   docker compose -f deploy/compose.yml up --build
+# Then open http://localhost:8000. The first start pulls the model (about 4.7 GB).
+# For a smaller footprint set ONCORA_LLM_MODEL=qwen2.5:3b in both services.
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama-models:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+    # Uncomment to use an NVIDIA GPU:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices: [{ driver: nvidia, count: all, capabilities: [gpu] }]
+
+  model_pull:
+    image: ollama/ollama:latest
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      OLLAMA_HOST: ollama:11434
+    entrypoint: ["sh", "-c", "ollama pull ${ONCORA_LLM_MODEL:-llama3.1:8b}"]
+    restart: "no"
+
+  api:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    depends_on:
+      model_pull:
+        condition: service_completed_successfully
+    environment:
+      ONCORA_LLM_PROVIDER: ollama
+      ONCORA_OLLAMA_URL: http://ollama:11434
+      ONCORA_LLM_MODEL: ${ONCORA_LLM_MODEL:-llama3.1:8b}
+      ONCORA_CORS_ORIGINS: http://localhost:8000,http://localhost:5173
+      ONCORA_AUDIT_DB: /app/audit/audit.sqlite3
+    volumes:
+      - audit:/app/audit
+    ports:
+      - "8000:8000"
+
+volumes:
+  ollama-models:
+  audit:

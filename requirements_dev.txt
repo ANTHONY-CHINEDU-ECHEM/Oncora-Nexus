@@ -1,0 +1,5 @@
+-r requirements.txt
+pytest>=8
+ruff>=0.6
+# Optional: neural dense retrieval (set ONCORA_EMBEDDINGS=sentence_transformers)
+# sentence-transformers>=3.0
