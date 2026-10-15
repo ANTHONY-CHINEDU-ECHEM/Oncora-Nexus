@@ -1,0 +1,502 @@
+{
+  "description": "Held out clinician style questions with relevance judgements against curated knowledge cards. Questions were written to avoid copying card wording so that lexical overlap alone is not sufficient. Never used to train the reranker.",
+  "questions": [
+    {
+      "id": "Q01",
+      "question": "How do I calculate the NPI for a 2.5 cm grade 3 tumour with two involved nodes?",
+      "relevant": [
+        "KC-001"
+      ]
+    },
+    {
+      "id": "Q02",
+      "question": "What percentage of stained nuclei counts as ER positive and what does ER low mean?",
+      "relevant": [
+        "KC-002"
+      ]
+    },
+    {
+      "id": "Q03",
+      "question": "Patient has IHC 2+ for HER2, what is the next step?",
+      "relevant": [
+        "KC-003"
+      ]
+    },
+    {
+      "id": "Q04",
+      "question": "Which tumours qualify as HER2 low and why does it matter for metastatic treatment?",
+      "relevant": [
+        "KC-003",
+        "KC-022"
+      ]
+    },
+    {
+      "id": "Q05",
+      "question": "Is surrogate subtyping by immunohistochemistry the same as PAM50?",
+      "relevant": [
+        "KC-004"
+      ]
+    },
+    {
+      "id": "Q06",
+      "question": "Should a premenopausal woman on adjuvant tamoxifen also have her ovaries suppressed?",
+      "relevant": [
+        "KC-006"
+      ]
+    },
+    {
+      "id": "Q07",
+      "question": "Aromatase inhibitor or tamoxifen first for a postmenopausal woman with hormone sensitive early disease?",
+      "relevant": [
+        "KC-007"
+      ]
+    },
+    {
+      "id": "Q08",
+      "question": "Joint pains on letrozole, how should this be managed and what about her bones?",
+      "relevant": [
+        "KC-008"
+      ]
+    },
+    {
+      "id": "Q09",
+      "question": "Which node positive luminal patients should get abemaciclib after surgery?",
+      "relevant": [
+        "KC-009"
+      ]
+    },
+    {
+      "id": "Q10",
+      "question": "Can chemotherapy be skipped for an intermediate Oncotype score in a 62 year old with one positive node?",
+      "relevant": [
+        "KC-010"
+      ]
+    },
+    {
+      "id": "Q11",
+      "question": "What chemotherapy regimens are standard for early disease and when is dose dense used?",
+      "relevant": [
+        "KC-011"
+      ]
+    },
+    {
+      "id": "Q12",
+      "question": "Why give systemic therapy before surgery in triple negative or HER2 disease?",
+      "relevant": [
+        "KC-012"
+      ]
+    },
+    {
+      "id": "Q13",
+      "question": "Is six months of Herceptin enough instead of a year?",
+      "relevant": [
+        "KC-013"
+      ]
+    },
+    {
+      "id": "Q14",
+      "question": "Residual invasive cancer at surgery after neoadjuvant trastuzumab, what adjuvant agent should follow?",
+      "relevant": [
+        "KC-014"
+      ]
+    },
+    {
+      "id": "Q15",
+      "question": "How often should we do an echo during trastuzumab and when do we stop it for heart problems?",
+      "relevant": [
+        "KC-015"
+      ]
+    },
+    {
+      "id": "Q16",
+      "question": "Best second line option after progression on pertuzumab and trastuzumab in metastatic HER2 disease?",
+      "relevant": [
+        "KC-016"
+      ]
+    },
+    {
+      "id": "Q17",
+      "question": "Does adding pembrolizumab before surgery help stage II triple negative cancer?",
+      "relevant": [
+        "KC-017"
+      ]
+    },
+    {
+      "id": "Q18",
+      "question": "Residual triple negative disease after neoadjuvant chemo, is capecitabine worthwhile?",
+      "relevant": [
+        "KC-018"
+      ]
+    },
+    {
+      "id": "Q19",
+      "question": "Adjuvant PARP inhibitor for a BRCA2 carrier with high risk HER2 negative disease?",
+      "relevant": [
+        "KC-018",
+        "KC-032"
+      ]
+    },
+    {
+      "id": "Q20",
+      "question": "What is first line therapy for metastatic triple negative disease with a high PD-L1 score?",
+      "relevant": [
+        "KC-019"
+      ]
+    },
+    {
+      "id": "Q21",
+      "question": "First line treatment for de novo metastatic luminal disease without visceral crisis?",
+      "relevant": [
+        "KC-020"
+      ]
+    },
+    {
+      "id": "Q22",
+      "question": "Her cancer progressed on palbociclib and letrozole and has a PIK3CA mutation, what next?",
+      "relevant": [
+        "KC-021"
+      ]
+    },
+    {
+      "id": "Q23",
+      "question": "Which antibody drug conjugate can be used for HER2 1+ metastatic disease and what lung toxicity should we watch for?",
+      "relevant": [
+        "KC-022"
+      ]
+    },
+    {
+      "id": "Q24",
+      "question": "Is survival worse with lumpectomy than mastectomy?",
+      "relevant": [
+        "KC-023"
+      ]
+    },
+    {
+      "id": "Q25",
+      "question": "Two positive sentinel nodes after wide local excision, do we need a full axillary clearance?",
+      "relevant": [
+        "KC-024"
+      ]
+    },
+    {
+      "id": "Q26",
+      "question": "Is one week of breast radiotherapy as good as three weeks?",
+      "relevant": [
+        "KC-025"
+      ]
+    },
+    {
+      "id": "Q27",
+      "question": "A 72 year old with a small node negative ER positive tumour on endocrine therapy, can we avoid radiotherapy?",
+      "relevant": [
+        "KC-026"
+      ]
+    },
+    {
+      "id": "Q28",
+      "question": "When is chest wall radiotherapy indicated after mastectomy?",
+      "relevant": [
+        "KC-027"
+      ]
+    },
+    {
+      "id": "Q29",
+      "question": "Should postmenopausal women receive zoledronic acid after surgery for early breast cancer?",
+      "relevant": [
+        "KC-028"
+      ]
+    },
+    {
+      "id": "Q30",
+      "question": "Antiemetic plan for EC chemotherapy and urgent management of fever with low neutrophils?",
+      "relevant": [
+        "KC-029"
+      ]
+    },
+    {
+      "id": "Q31",
+      "question": "Arm swelling after axillary surgery, how should it be managed and is weight training safe?",
+      "relevant": [
+        "KC-030"
+      ]
+    },
+    {
+      "id": "Q32",
+      "question": "Does physical activity help cancer related tiredness and which antidepressants interfere with tamoxifen?",
+      "relevant": [
+        "KC-031"
+      ]
+    },
+    {
+      "id": "Q33",
+      "question": "Who should be offered BRCA testing at diagnosis?",
+      "relevant": [
+        "KC-032"
+      ]
+    },
+    {
+      "id": "Q34",
+      "question": "What preventive medication can a high risk postmenopausal woman with a strong family history take?",
+      "relevant": [
+        "KC-033"
+      ]
+    },
+    {
+      "id": "Q35",
+      "question": "What age range does the national screening programme cover and how often?",
+      "relevant": [
+        "KC-034"
+      ]
+    },
+    {
+      "id": "Q36",
+      "question": "Is radiotherapy needed after excision of DCIS?",
+      "relevant": [
+        "KC-035"
+      ]
+    },
+    {
+      "id": "Q37",
+      "question": "How should treatment be adapted for a frail 85 year old with ER positive cancer?",
+      "relevant": [
+        "KC-036"
+      ]
+    },
+    {
+      "id": "Q38",
+      "question": "A 32 year old wants children in future, what should happen before chemotherapy?",
+      "relevant": [
+        "KC-037"
+      ]
+    },
+    {
+      "id": "Q39",
+      "question": "Which endocrine drug is preferred for a man with breast cancer?",
+      "relevant": [
+        "KC-038"
+      ]
+    },
+    {
+      "id": "Q40",
+      "question": "Should we rebiopsy a new liver lesion in someone with previous breast cancer?",
+      "relevant": [
+        "KC-039"
+      ]
+    },
+    {
+      "id": "Q41",
+      "question": "Back pain and leg weakness in a patient with known bone metastases, what is the emergency management?",
+      "relevant": [
+        "KC-040"
+      ]
+    },
+    {
+      "id": "Q42",
+      "question": "How long should mammographic surveillance continue after treatment, and should we do routine scans for metastases?",
+      "relevant": [
+        "KC-041"
+      ]
+    },
+    {
+      "id": "Q43",
+      "question": "Is there a validated online tool to show patients the absolute benefit of adjuvant therapy?",
+      "relevant": [
+        "KC-042"
+      ]
+    },
+    {
+      "id": "Q44",
+      "question": "Can a survival model tell us what would happen if she had a different treatment?",
+      "relevant": [
+        "KC-043"
+      ]
+    },
+    {
+      "id": "Q45",
+      "question": "Who should attend the breast MDT and what should be recorded?",
+      "relevant": [
+        "KC-044"
+      ]
+    },
+    {
+      "id": "Q46",
+      "question": "Can automated screening decide whether a patient is eligible for a study?",
+      "relevant": [
+        "KC-045"
+      ]
+    },
+    {
+      "id": "Q47",
+      "question": "Red swollen breast with peau d orange, what is the treatment sequence?",
+      "relevant": [
+        "KC-046"
+      ]
+    },
+    {
+      "id": "Q48",
+      "question": "Why is MRI used for invasive lobular carcinoma and where does it spread?",
+      "relevant": [
+        "KC-047"
+      ]
+    },
+    {
+      "id": "Q49",
+      "question": "Is ten years of tamoxifen better than five?",
+      "relevant": [
+        "KC-048"
+      ]
+    },
+    {
+      "id": "Q50",
+      "question": "How is TNM stage defined for a 6 cm tumour invading the skin?",
+      "relevant": [
+        "KC-005"
+      ]
+    }
+  ],
+  "blind_description": "Written after the lay language lexicon and reranker features were frozen; scored once, never tuned against.",
+  "blind_questions": [
+    {
+      "id": "B01",
+      "question": "Grade 2 tumour of 18 mm with no nodal involvement, which prognostic group is that on the Nottingham index?",
+      "relevant": [
+        "KC-001"
+      ]
+    },
+    {
+      "id": "B02",
+      "question": "Is a tumour with 5 percent oestrogen receptor staining going to respond like a strongly positive one?",
+      "relevant": [
+        "KC-002"
+      ]
+    },
+    {
+      "id": "B03",
+      "question": "Do we need FISH when HER2 immunostaining is equivocal?",
+      "relevant": [
+        "KC-003"
+      ]
+    },
+    {
+      "id": "B04",
+      "question": "Extending endocrine treatment beyond five years, who benefits most?",
+      "relevant": [
+        "KC-048"
+      ]
+    },
+    {
+      "id": "B05",
+      "question": "Should ribociclib be added to an aromatase inhibitor for stage II hormone positive disease?",
+      "relevant": [
+        "KC-009"
+      ]
+    },
+    {
+      "id": "B06",
+      "question": "Does MammaPrint allow chemotherapy to be omitted when clinical risk is high?",
+      "relevant": [
+        "KC-010"
+      ]
+    },
+    {
+      "id": "B07",
+      "question": "T-DM1 after surgery for a HER2 positive patient who did not achieve a complete response",
+      "relevant": [
+        "KC-014"
+      ]
+    },
+    {
+      "id": "B08",
+      "question": "Which HER2 drug works for patients whose disease has spread to the brain?",
+      "relevant": [
+        "KC-016",
+        "KC-040"
+      ]
+    },
+    {
+      "id": "B09",
+      "question": "Immune checkpoint inhibitor toxicities to monitor during neoadjuvant treatment of TNBC",
+      "relevant": [
+        "KC-017"
+      ]
+    },
+    {
+      "id": "B10",
+      "question": "Sacituzumab govitecan for pretreated metastatic triple negative breast cancer",
+      "relevant": [
+        "KC-019"
+      ]
+    },
+    {
+      "id": "B11",
+      "question": "ESR1 mutation detected on liquid biopsy after CDK4/6 inhibitor, what oral endocrine option exists?",
+      "relevant": [
+        "KC-021"
+      ]
+    },
+    {
+      "id": "B12",
+      "question": "What margin is acceptable after breast conserving surgery for invasive cancer?",
+      "relevant": [
+        "KC-023"
+      ]
+    },
+    {
+      "id": "B13",
+      "question": "Is axillary radiotherapy an alternative to dissection for a positive sentinel node?",
+      "relevant": [
+        "KC-024"
+      ]
+    },
+    {
+      "id": "B14",
+      "question": "26 Gy in five fractions, is that the standard whole breast schedule in the UK?",
+      "relevant": [
+        "KC-025"
+      ]
+    },
+    {
+      "id": "B15",
+      "question": "Should she see a dentist before starting bisphosphonates?",
+      "relevant": [
+        "KC-028"
+      ]
+    },
+    {
+      "id": "B16",
+      "question": "Can a woman stop endocrine therapy temporarily to try for a baby?",
+      "relevant": [
+        "KC-037"
+      ]
+    },
+    {
+      "id": "B17",
+      "question": "Annual MRI surveillance for a BRCA1 carrier, from what age?",
+      "relevant": [
+        "KC-033"
+      ]
+    },
+    {
+      "id": "B18",
+      "question": "Low risk DCIS, is active monitoring an option?",
+      "relevant": [
+        "KC-035"
+      ]
+    },
+    {
+      "id": "B19",
+      "question": "Single fraction radiotherapy for a painful rib metastasis",
+      "relevant": [
+        "KC-040"
+      ]
+    },
+    {
+      "id": "B20",
+      "question": "Should every breast cancer patient be considered for a clinical trial at the tumour board?",
+      "relevant": [
+        "KC-044",
+        "KC-045"
+      ]
+    }
+  ]
+}
