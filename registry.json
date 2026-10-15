@@ -1,0 +1,36 @@
+{
+  "built_at": "2026-10-15T11:57:15Z",
+  "seed": 20261015,
+  "training_seconds": 136.6,
+  "data_fingerprints": {
+    "metabric_patient": "2a6bbadc6e4b2b07",
+    "metabric_sample": "9a2291e065e2a0a5",
+    "metabric_expression_pam50": "7e8cc5d3af07eb67",
+    "tcga_patient": "13c939025794ce21"
+  },
+  "models": {
+    "prognosis_cox_core": {
+      "version": "1.0.0",
+      "endpoint": "relapse free survival",
+      "cv_c_index": 0.6502,
+      "external_c_index_gbsg2": 0.6688,
+      "npi_c_index_gbsg2": 0.6589
+    },
+    "subtype_expression_lr": {
+      "version": "1.0.0",
+      "cv_accuracy": 0.7725,
+      "cv_macro_f1": 0.7381
+    },
+    "subtype_surrogate_lr": {
+      "version": "1.0.0",
+      "cv_accuracy": 0.4621,
+      "cv_macro_f1": 0.4154
+    },
+    "trial_criteria_parser": {
+      "version": "1.0.0",
+      "trials": 999,
+      "structured_criteria": 7068,
+      "criteria_per_trial": 7.08
+    }
+  }
+}
