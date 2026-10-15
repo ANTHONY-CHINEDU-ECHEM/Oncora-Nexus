@@ -1,0 +1,1212 @@
+{
+  "protocol": "Retrieval benchmark and learning to rank.\n\nThree query sets, each judged at document level:\n\n1. PubMed known item queries. For a held out abstract, the OBJECTIVE\n   sentence with 50 percent of its words removed (seeded) is the query and the\n   abstract is the single relevant document. This is the classic known item\n   protocol for corpora without human judgements.\n2. Card topical queries (training only): random subsets of a card's title,\n   tags and body words, so the reranker sees queries for which a guideline\n   digest is the right answer.\n3. Trial registry queries (training only): heavily thinned results,\n   intervention and adverse event text, so the reranker learns when trial\n   reports are the right evidence.\n4. Clinical questions, development set: 50 clinician style questions with\n   relevant knowledge cards. Never used for training, but error analysis on\n   this set informed the lay language lexicon, so its scores are optimistic.\n5. Clinical questions, blind set: 20 further questions written after the\n   lexicon was frozen and scored once. This is the headline figure.\n\nThe reranker is trained on sets 1, 2 and 3 (train partitions) and evaluated on\nthe held out partition of set 1 and on sets 4 and 5, which it never sees.",
+  "index": {
+    "built_at": "2026-10-15T11:59:41Z",
+    "passages": 13660,
+    "documents": 4035,
+    "by_source": {
+      "guideline": 48,
+      "pubmed": 6620,
+      "trial": 6992
+    },
+    "documents_by_source": {
+      "guideline": 48,
+      "pubmed": 2988,
+      "trial": 999
+    },
+    "vocabulary": 22077,
+    "dense_backend": "lsa",
+    "dense_dimensions": 256,
+    "lsa_explained_variance": 0.2182,
+    "avg_passage_tokens": 88.9,
+    "build_seconds": 71.1
+  },
+  "reranker_training": {
+    "training_queries": 1950,
+    "training_pairs": 184581,
+    "positive_pairs": 3873,
+    "coefficients_standardised": {
+      "bm25_norm": 1.5275,
+      "dense_cosine": -0.6861,
+      "rrf": 1.2936,
+      "query_coverage": 0.1746,
+      "bigram_overlap": 0.1979,
+      "drug_match": 0.0642,
+      "context_match": -0.1476,
+      "section_prior": -0.156,
+      "is_guideline": 0.1665,
+      "is_trial": 0.7593,
+      "evidence_strength": 0.0161
+    }
+  },
+  "pubmed_known_item_test": {
+    "bm25": {
+      "recall_at_1": 0.928,
+      "recall_at_5": 0.968,
+      "recall_at_10": 0.972,
+      "mrr_at_10": 0.944,
+      "ndcg_at_10": 0.9509,
+      "queries": 500,
+      "mean_latency_ms": 1.0
+    },
+    "dense_lsa": {
+      "recall_at_1": 0.59,
+      "recall_at_5": 0.802,
+      "recall_at_10": 0.858,
+      "mrr_at_10": 0.6746,
+      "ndcg_at_10": 0.7188,
+      "queries": 500,
+      "mean_latency_ms": 2.6
+    },
+    "hybrid_rrf": {
+      "recall_at_1": 0.788,
+      "recall_at_5": 0.914,
+      "recall_at_10": 0.95,
+      "mrr_at_10": 0.8424,
+      "ndcg_at_10": 0.8685,
+      "queries": 500,
+      "mean_latency_ms": 4.6
+    },
+    "hybrid_rrf_reranked": {
+      "recall_at_1": 0.896,
+      "recall_at_5": 0.952,
+      "recall_at_10": 0.966,
+      "mrr_at_10": 0.9214,
+      "ndcg_at_10": 0.9323,
+      "queries": 500,
+      "mean_latency_ms": 4.8
+    }
+  },
+  "clinical_questions_development": {
+    "bm25": {
+      "recall_at_1": 0.64,
+      "recall_at_5": 0.76,
+      "recall_at_10": 0.8,
+      "mrr_at_10": 0.6957,
+      "ndcg_at_10": 0.7117,
+      "queries": 50,
+      "mean_latency_ms": 1.0
+    },
+    "dense_lsa": {
+      "recall_at_1": 0.32,
+      "recall_at_5": 0.56,
+      "recall_at_10": 0.66,
+      "mrr_at_10": 0.4147,
+      "ndcg_at_10": 0.4685,
+      "queries": 50,
+      "mean_latency_ms": 2.9
+    },
+    "hybrid_rrf": {
+      "recall_at_1": 0.48,
+      "recall_at_5": 0.7,
+      "recall_at_10": 0.74,
+      "mrr_at_10": 0.563,
+      "ndcg_at_10": 0.6015,
+      "queries": 50,
+      "mean_latency_ms": 5.1
+    },
+    "hybrid_rrf_reranked": {
+      "recall_at_1": 0.72,
+      "recall_at_5": 0.84,
+      "recall_at_10": 0.92,
+      "mrr_at_10": 0.7704,
+      "ndcg_at_10": 0.8036,
+      "queries": 50,
+      "mean_latency_ms": 5.5
+    }
+  },
+  "clinical_questions_blind": {
+    "bm25": {
+      "recall_at_1": 0.65,
+      "recall_at_5": 0.75,
+      "recall_at_10": 0.9,
+      "mrr_at_10": 0.7121,
+      "ndcg_at_10": 0.7361,
+      "queries": 20,
+      "mean_latency_ms": 1.1
+    },
+    "dense_lsa": {
+      "recall_at_1": 0.25,
+      "recall_at_5": 0.6,
+      "recall_at_10": 0.6,
+      "mrr_at_10": 0.3892,
+      "ndcg_at_10": 0.4144,
+      "queries": 20,
+      "mean_latency_ms": 2.8
+    },
+    "hybrid_rrf": {
+      "recall_at_1": 0.55,
+      "recall_at_5": 0.8,
+      "recall_at_10": 0.8,
+      "mrr_at_10": 0.6392,
+      "ndcg_at_10": 0.6474,
+      "queries": 20,
+      "mean_latency_ms": 5.9
+    },
+    "hybrid_rrf_reranked": {
+      "recall_at_1": 0.7,
+      "recall_at_5": 0.95,
+      "recall_at_10": 0.95,
+      "mrr_at_10": 0.7767,
+      "ndcg_at_10": 0.7913,
+      "queries": 20,
+      "mean_latency_ms": 6.2
+    }
+  },
+  "clinical_questions_detail": [
+    {
+      "id": "Q01",
+      "question": "How do I calculate the NPI for a 2.5 cm grade 3 tumour with two involved nodes?",
+      "relevant": [
+        "KC-001"
+      ],
+      "top5": [
+        "KC-001",
+        "NCT00429299",
+        "NCT00356811",
+        "PMID:23491275",
+        "PMID:15930421"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q02",
+      "question": "What percentage of stained nuclei counts as ER positive and what does ER low mean?",
+      "relevant": [
+        "KC-002"
+      ],
+      "top5": [
+        "KC-002",
+        "NCT00259090",
+        "KC-004",
+        "PMID:18349391",
+        "NCT00579826"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q03",
+      "question": "Patient has IHC 2+ for HER2, what is the next step?",
+      "relevant": [
+        "KC-003"
+      ],
+      "top5": [
+        "NCT00887575",
+        "NCT00912340",
+        "NCT00825734",
+        "NCT01875367",
+        "KC-003"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q04",
+      "question": "Which tumours qualify as HER2 low and why does it matter for metastatic treatment?",
+      "relevant": [
+        "KC-003",
+        "KC-022"
+      ],
+      "top5": [
+        "KC-003",
+        "KC-022",
+        "NCT00082810",
+        "PMID:19858400",
+        "NCT00193063"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q05",
+      "question": "Is surrogate subtyping by immunohistochemistry the same as PAM50?",
+      "relevant": [
+        "KC-004"
+      ],
+      "top5": [
+        "KC-004",
+        "NCT02463032",
+        "PMID:25964246",
+        "PMID:25361981",
+        "NCT02244580"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q06",
+      "question": "Should a premenopausal woman on adjuvant tamoxifen also have her ovaries suppressed?",
+      "relevant": [
+        "KC-006"
+      ],
+      "top5": [
+        "NCT01252290",
+        "PMID:18086795",
+        "NCT01194440",
+        "PMID:10841825",
+        "KC-006"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q07",
+      "question": "Aromatase inhibitor or tamoxifen first for a postmenopausal woman with hormone sensitive early disease?",
+      "relevant": [
+        "KC-007"
+      ],
+      "top5": [
+        "KC-007",
+        "NCT00324259",
+        "PMID:21247627",
+        "PMID:17301074",
+        "PMID:18514508"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q08",
+      "question": "Joint pains on letrozole, how should this be managed and what about her bones?",
+      "relevant": [
+        "KC-008"
+      ],
+      "top5": [
+        "NCT00656305",
+        "NCT00708214",
+        "NCT00545077",
+        "NCT00416715",
+        "NCT02447328"
+      ],
+      "hit_at_5": false
+    },
+    {
+      "id": "Q09",
+      "question": "Which node positive luminal patients should get abemaciclib after surgery?",
+      "relevant": [
+        "KC-009"
+      ],
+      "top5": [
+        "KC-009",
+        "NCT02308020",
+        "PMID:24562444",
+        "NCT02244580",
+        "NCT00759785"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q10",
+      "question": "Can chemotherapy be skipped for an intermediate Oncotype score in a 62 year old with one positive node?",
+      "relevant": [
+        "KC-010"
+      ],
+      "top5": [
+        "KC-010",
+        "NCT00550771",
+        "PMID:16731539",
+        "NCT02734979",
+        "NCT00374322"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q11",
+      "question": "What chemotherapy regimens are standard for early disease and when is dose dense used?",
+      "relevant": [
+        "KC-011"
+      ],
+      "top5": [
+        "KC-011",
+        "PMID:12562649",
+        "PMID:17404368",
+        "KC-029",
+        "NCT00475085"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q12",
+      "question": "Why give systemic therapy before surgery in triple negative or HER2 disease?",
+      "relevant": [
+        "KC-012"
+      ],
+      "top5": [
+        "KC-012",
+        "NCT00633464",
+        "NCT01631552",
+        "NCT02178722",
+        "NCT02425891"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q13",
+      "question": "Is six months of Herceptin enough instead of a year?",
+      "relevant": [
+        "KC-013"
+      ],
+      "top5": [
+        "KC-013",
+        "NCT01570036",
+        "NCT00405938",
+        "NCT00405938",
+        "PMID:23229908"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q14",
+      "question": "Residual invasive cancer at surgery after neoadjuvant trastuzumab, what adjuvant agent should follow?",
+      "relevant": [
+        "KC-014"
+      ],
+      "top5": [
+        "KC-014",
+        "KC-012",
+        "NCT02131064",
+        "NCT03078751",
+        "NCT00392392"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q15",
+      "question": "How often should we do an echo during trastuzumab and when do we stop it for heart problems?",
+      "relevant": [
+        "KC-015"
+      ],
+      "top5": [
+        "NCT02038010",
+        "KC-015",
+        "NCT01091974",
+        "NCT01629615",
+        "NCT00932373"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q16",
+      "question": "Best second line option after progression on pertuzumab and trastuzumab in metastatic HER2 disease?",
+      "relevant": [
+        "KC-016"
+      ],
+      "top5": [
+        "KC-016",
+        "NCT02129556",
+        "NCT02536339",
+        "PMID:23602601",
+        "NCT02896855"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q17",
+      "question": "Does adding pembrolizumab before surgery help stage II triple negative cancer?",
+      "relevant": [
+        "KC-017"
+      ],
+      "top5": [
+        "KC-017",
+        "NCT03197389",
+        "KC-019",
+        "NCT01631552",
+        "NCT03197389"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q18",
+      "question": "Residual triple negative disease after neoadjuvant chemo, is capecitabine worthwhile?",
+      "relevant": [
+        "KC-018"
+      ],
+      "top5": [
+        "KC-018",
+        "KC-012",
+        "KC-017",
+        "NCT00633464",
+        "KC-019"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q19",
+      "question": "Adjuvant PARP inhibitor for a BRCA2 carrier with high risk HER2 negative disease?",
+      "relevant": [
+        "KC-018",
+        "KC-032"
+      ],
+      "top5": [
+        "KC-018",
+        "KC-009",
+        "KC-019",
+        "KC-032",
+        "KC-033"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q20",
+      "question": "What is first line therapy for metastatic triple negative disease with a high PD-L1 score?",
+      "relevant": [
+        "KC-019"
+      ],
+      "top5": [
+        "KC-019",
+        "NCT02657889",
+        "NCT02807844",
+        "NCT03106077",
+        "KC-020"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q21",
+      "question": "First line treatment for de novo metastatic luminal disease without visceral crisis?",
+      "relevant": [
+        "KC-020"
+      ],
+      "top5": [
+        "KC-020",
+        "KC-039",
+        "PMID:23053266",
+        "NCT01772004",
+        "NCT01560416"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q22",
+      "question": "Her cancer progressed on palbociclib and letrozole and has a PIK3CA mutation, what next?",
+      "relevant": [
+        "KC-021"
+      ],
+      "top5": [
+        "NCT02692755",
+        "NCT01277757",
+        "NCT02600923",
+        "NCT00721409",
+        "PMID:24590635"
+      ],
+      "hit_at_5": false
+    },
+    {
+      "id": "Q23",
+      "question": "Which antibody drug conjugate can be used for HER2 1+ metastatic disease and what lung toxicity should we watch for?",
+      "relevant": [
+        "KC-022"
+      ],
+      "top5": [
+        "KC-022",
+        "PMID:23382472",
+        "KC-019",
+        "NCT00708214",
+        "NCT02073487"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q24",
+      "question": "Is survival worse with lumpectomy than mastectomy?",
+      "relevant": [
+        "KC-023"
+      ],
+      "top5": [
+        "KC-023",
+        "PMID:7877647",
+        "PMID:25704790",
+        "PMID:7877647",
+        "PMID:22843943"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q25",
+      "question": "Two positive sentinel nodes after wide local excision, do we need a full axillary clearance?",
+      "relevant": [
+        "KC-024"
+      ],
+      "top5": [
+        "KC-024",
+        "NCT00365365",
+        "NCT00119262",
+        "NCT00005957",
+        "NCT00003830"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q26",
+      "question": "Is one week of breast radiotherapy as good as three weeks?",
+      "relevant": [
+        "KC-025"
+      ],
+      "top5": [
+        "NCT01525589",
+        "NCT02001974",
+        "NCT00376688",
+        "NCT01246973",
+        "PMID:22006502"
+      ],
+      "hit_at_5": false
+    },
+    {
+      "id": "Q27",
+      "question": "A 72 year old with a small node negative ER positive tumour on endocrine therapy, can we avoid radiotherapy?",
+      "relevant": [
+        "KC-026"
+      ],
+      "top5": [
+        "KC-026",
+        "KC-048",
+        "KC-002",
+        "NCT00374322",
+        "KC-009"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q28",
+      "question": "When is chest wall radiotherapy indicated after mastectomy?",
+      "relevant": [
+        "KC-027"
+      ],
+      "top5": [
+        "NCT03167359",
+        "NCT00004888",
+        "NCT01127373",
+        "NCT03167359",
+        "NCT01856543"
+      ],
+      "hit_at_5": false
+    },
+    {
+      "id": "Q29",
+      "question": "Should postmenopausal women receive zoledronic acid after surgery for early breast cancer?",
+      "relevant": [
+        "KC-028"
+      ],
+      "top5": [
+        "NCT00305695",
+        "PMID:18515735",
+        "KC-028",
+        "NCT00213980",
+        "PMID:18515735"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q30",
+      "question": "Antiemetic plan for EC chemotherapy and urgent management of fever with low neutrophils?",
+      "relevant": [
+        "KC-029"
+      ],
+      "top5": [
+        "NCT00630032",
+        "PMID:7541448",
+        "NCT00559845",
+        "NCT01256008",
+        "KC-029"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q31",
+      "question": "Arm swelling after axillary surgery, how should it be managed and is weight training safe?",
+      "relevant": [
+        "KC-030"
+      ],
+      "top5": [
+        "KC-030",
+        "PMID:23604998",
+        "PMID:16702582",
+        "PMID:24390808",
+        "NCT00376597"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q32",
+      "question": "Does physical activity help cancer related tiredness and which antidepressants interfere with tamoxifen?",
+      "relevant": [
+        "KC-031"
+      ],
+      "top5": [
+        "NCT00569166",
+        "NCT01256008",
+        "NCT00956813",
+        "NCT02796755",
+        "NCT00702949"
+      ],
+      "hit_at_5": false
+    },
+    {
+      "id": "Q33",
+      "question": "Who should be offered BRCA testing at diagnosis?",
+      "relevant": [
+        "KC-032"
+      ],
+      "top5": [
+        "KC-032",
+        "KC-018",
+        "KC-033",
+        "PMID:22838957",
+        "NCT01313039"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q34",
+      "question": "What preventive medication can a high risk postmenopausal woman with a strong family history take?",
+      "relevant": [
+        "KC-033"
+      ],
+      "top5": [
+        "KC-033",
+        "NCT00711529",
+        "NCT03061175",
+        "NCT00291135",
+        "PMID:24004815"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q35",
+      "question": "What age range does the national screening programme cover and how often?",
+      "relevant": [
+        "KC-034"
+      ],
+      "top5": [
+        "PMID:8004592",
+        "PMID:21852703",
+        "PMID:21852703",
+        "PMID:10572845",
+        "PMID:20837718"
+      ],
+      "hit_at_5": false
+    },
+    {
+      "id": "Q36",
+      "question": "Is radiotherapy needed after excision of DCIS?",
+      "relevant": [
+        "KC-035"
+      ],
+      "top5": [
+        "PMID:10683002",
+        "PMID:18250350",
+        "NCT01581619",
+        "PMID:24043739",
+        "PMID:10683002"
+      ],
+      "hit_at_5": false
+    },
+    {
+      "id": "Q37",
+      "question": "How should treatment be adapted for a frail 85 year old with ER positive cancer?",
+      "relevant": [
+        "KC-036"
+      ],
+      "top5": [
+        "KC-036",
+        "NCT00394251",
+        "NCT01421472",
+        "PMID:12598347",
+        "NCT01037790"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q38",
+      "question": "A 32 year old wants children in future, what should happen before chemotherapy?",
+      "relevant": [
+        "KC-037"
+      ],
+      "top5": [
+        "KC-037",
+        "NCT00820222",
+        "NCT02234479",
+        "NCT01466270",
+        "PMID:25636332"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q39",
+      "question": "Which endocrine drug is preferred for a man with breast cancer?",
+      "relevant": [
+        "KC-038"
+      ],
+      "top5": [
+        "KC-038",
+        "KC-008",
+        "KC-022",
+        "NCT01401166",
+        "NCT02988986"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q40",
+      "question": "Should we rebiopsy a new liver lesion in someone with previous breast cancer?",
+      "relevant": [
+        "KC-039"
+      ],
+      "top5": [
+        "NCT00418028",
+        "NCT03190083",
+        "NCT00606931",
+        "NCT02178722",
+        "NCT03012477"
+      ],
+      "hit_at_5": false
+    },
+    {
+      "id": "Q41",
+      "question": "Back pain and leg weakness in a patient with known bone metastases, what is the emergency management?",
+      "relevant": [
+        "KC-040"
+      ],
+      "top5": [
+        "KC-040",
+        "NCT01237327",
+        "NCT00918281",
+        "NCT00365105",
+        "NCT02924883"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q42",
+      "question": "How long should mammographic surveillance continue after treatment, and should we do routine scans for metastases?",
+      "relevant": [
+        "KC-041"
+      ],
+      "top5": [
+        "KC-041",
+        "NCT01575522",
+        "NCT01945775",
+        "NCT01033032",
+        "PMID:7848404"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q43",
+      "question": "Is there a validated online tool to show patients the absolute benefit of adjuvant therapy?",
+      "relevant": [
+        "KC-042"
+      ],
+      "top5": [
+        "KC-042",
+        "NCT01840163",
+        "NCT01840163",
+        "KC-011",
+        "KC-010"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q44",
+      "question": "Can a survival model tell us what would happen if she had a different treatment?",
+      "relevant": [
+        "KC-043"
+      ],
+      "top5": [
+        "KC-043",
+        "PMID:8523049",
+        "PMID:19270108",
+        "PMID:24568475",
+        "PMID:8523049"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q45",
+      "question": "Who should attend the breast MDT and what should be recorded?",
+      "relevant": [
+        "KC-044"
+      ],
+      "top5": [
+        "KC-044",
+        "PMID:20356944",
+        "NCT03624972",
+        "PMID:17962011",
+        "PMID:7695460"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q46",
+      "question": "Can automated screening decide whether a patient is eligible for a study?",
+      "relevant": [
+        "KC-045"
+      ],
+      "top5": [
+        "KC-045",
+        "PMID:25567822",
+        "NCT00305695",
+        "NCT02366130",
+        "PMID:25567822"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q47",
+      "question": "Red swollen breast with peau d orange, what is the treatment sequence?",
+      "relevant": [
+        "KC-046"
+      ],
+      "top5": [
+        "KC-046",
+        "NCT00513695",
+        "NCT00291577",
+        "NCT01688609",
+        "NCT01246973"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q48",
+      "question": "Why is MRI used for invasive lobular carcinoma and where does it spread?",
+      "relevant": [
+        "KC-047"
+      ],
+      "top5": [
+        "KC-047",
+        "NCT00945061",
+        "NCT00325598",
+        "NCT00593346",
+        "NCT00376597"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q49",
+      "question": "Is ten years of tamoxifen better than five?",
+      "relevant": [
+        "KC-048"
+      ],
+      "top5": [
+        "KC-006",
+        "PMID:14510798",
+        "KC-048",
+        "KC-042",
+        "PMID:23742961"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "Q50",
+      "question": "How is TNM stage defined for a 6 cm tumour invading the skin?",
+      "relevant": [
+        "KC-005"
+      ],
+      "top5": [
+        "KC-005",
+        "NCT00493649",
+        "PMID:16752076",
+        "NCT00129935",
+        "NCT02260531"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B01",
+      "question": "Grade 2 tumour of 18 mm with no nodal involvement, which prognostic group is that on the Nottingham index?",
+      "relevant": [
+        "KC-001"
+      ],
+      "top5": [
+        "KC-001",
+        "KC-005",
+        "PMID:21057570",
+        "PMID:7954259",
+        "NCT00499122"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B02",
+      "question": "Is a tumour with 5 percent oestrogen receptor staining going to respond like a strongly positive one?",
+      "relevant": [
+        "KC-002"
+      ],
+      "top5": [
+        "KC-002",
+        "NCT02455453",
+        "NCT00376688",
+        "NCT00093795",
+        "NCT00259090"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B03",
+      "question": "Do we need FISH when HER2 immunostaining is equivocal?",
+      "relevant": [
+        "KC-003"
+      ],
+      "top5": [
+        "NCT00493649",
+        "NCT00820872",
+        "KC-003",
+        "NCT02455453",
+        "NCT00825734"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B04",
+      "question": "Extending endocrine treatment beyond five years, who benefits most?",
+      "relevant": [
+        "KC-048"
+      ],
+      "top5": [
+        "KC-048",
+        "KC-007",
+        "PMID:23868011",
+        "KC-022",
+        "KC-041"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B05",
+      "question": "Should ribociclib be added to an aromatase inhibitor for stage II hormone positive disease?",
+      "relevant": [
+        "KC-009"
+      ],
+      "top5": [
+        "KC-009",
+        "KC-020",
+        "NCT00324259",
+        "PMID:23425564",
+        "PMID:21570487"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B06",
+      "question": "Does MammaPrint allow chemotherapy to be omitted when clinical risk is high?",
+      "relevant": [
+        "KC-010"
+      ],
+      "top5": [
+        "NCT02734979",
+        "NCT01011218",
+        "KC-010",
+        "NCT00562718",
+        "KC-026"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B07",
+      "question": "T-DM1 after surgery for a HER2 positive patient who did not achieve a complete response",
+      "relevant": [
+        "KC-014"
+      ],
+      "top5": [
+        "NCT02073487",
+        "KC-014",
+        "PMID:25456368",
+        "NCT01702571",
+        "PMID:23567146"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B08",
+      "question": "Which HER2 drug works for patients whose disease has spread to the brain?",
+      "relevant": [
+        "KC-016",
+        "KC-040"
+      ],
+      "top5": [
+        "NCT00708214",
+        "NCT00320541",
+        "KC-016",
+        "NCT02308020",
+        "NCT02536339"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B09",
+      "question": "Immune checkpoint inhibitor toxicities to monitor during neoadjuvant treatment of TNBC",
+      "relevant": [
+        "KC-017"
+      ],
+      "top5": [
+        "KC-017",
+        "NCT03197389",
+        "NCT02178722",
+        "NCT01631552",
+        "NCT03197389"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B10",
+      "question": "Sacituzumab govitecan for pretreated metastatic triple negative breast cancer",
+      "relevant": [
+        "KC-019"
+      ],
+      "top5": [
+        "KC-019",
+        "NCT02574455",
+        "KC-022",
+        "NCT02574455",
+        "NCT02370238"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B11",
+      "question": "ESR1 mutation detected on liquid biopsy after CDK4/6 inhibitor, what oral endocrine option exists?",
+      "relevant": [
+        "KC-021"
+      ],
+      "top5": [
+        "KC-021",
+        "KC-009",
+        "KC-020",
+        "NCT03078751",
+        "KC-007"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B12",
+      "question": "What margin is acceptable after breast conserving surgery for invasive cancer?",
+      "relevant": [
+        "KC-023"
+      ],
+      "top5": [
+        "KC-023",
+        "NCT00093795",
+        "NCT00119262",
+        "NCT00093795",
+        "KC-035"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B13",
+      "question": "Is axillary radiotherapy an alternative to dissection for a positive sentinel node?",
+      "relevant": [
+        "KC-024"
+      ],
+      "top5": [
+        "KC-024",
+        "NCT00003830",
+        "PMID:25439688",
+        "NCT00003830",
+        "PMID:24292111"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B14",
+      "question": "26 Gy in five fractions, is that the standard whole breast schedule in the UK?",
+      "relevant": [
+        "KC-025"
+      ],
+      "top5": [
+        "KC-025",
+        "PMID:22910644",
+        "NCT02556632",
+        "PMID:22056970",
+        "NCT00581256"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B15",
+      "question": "Should she see a dentist before starting bisphosphonates?",
+      "relevant": [
+        "KC-028"
+      ],
+      "top5": [
+        "NCT01466972",
+        "NCT00127205",
+        "NCT00090857",
+        "KC-028",
+        "NCT00014222"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B16",
+      "question": "Can a woman stop endocrine therapy temporarily to try for a baby?",
+      "relevant": [
+        "KC-037"
+      ],
+      "top5": [
+        "NCT00374322",
+        "NCT00313170",
+        "PMID:11872547",
+        "NCT00305448",
+        "NCT00524303"
+      ],
+      "hit_at_5": false
+    },
+    {
+      "id": "B17",
+      "question": "Annual MRI surveillance for a BRCA1 carrier, from what age?",
+      "relevant": [
+        "KC-033"
+      ],
+      "top5": [
+        "KC-033",
+        "NCT00859651",
+        "KC-041",
+        "PMID:11710890",
+        "PMID:20876346"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B18",
+      "question": "Low risk DCIS, is active monitoring an option?",
+      "relevant": [
+        "KC-035"
+      ],
+      "top5": [
+        "KC-035",
+        "PMID:26025767",
+        "NCT00129376",
+        "PMID:10430251",
+        "PMID:16801628"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B19",
+      "question": "Single fraction radiotherapy for a painful rib metastasis",
+      "relevant": [
+        "KC-040"
+      ],
+      "top5": [
+        "KC-040",
+        "NCT00377156",
+        "NCT00945061",
+        "PMID:17192690",
+        "NCT00405938"
+      ],
+      "hit_at_5": true
+    },
+    {
+      "id": "B20",
+      "question": "Should every breast cancer patient be considered for a clinical trial at the tumour board?",
+      "relevant": [
+        "KC-044",
+        "KC-045"
+      ],
+      "top5": [
+        "KC-044",
+        "NCT00941330",
+        "NCT00063570",
+        "PMID:9215816",
+        "NCT01111825"
+      ],
+      "hit_at_5": true
+    }
+  ]
+}

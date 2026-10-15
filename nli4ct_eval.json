@@ -1,0 +1,141 @@
+{
+  "protocol": "Evaluation of evidence selection and claim verification on NLI4CT.\n\nNLI4CT (SemEval 2023 Task 7) provides expert written statements about breast\ncancer trial reports, each labelled Entailment or Contradiction, with gold\nevidence line indices. It is a direct test of two capabilities Oncora Nexus\nrelies on when it answers questions about a specific trial:\n\nTask A, evidence selection: given a statement and the relevant section of a\ntrial report, which lines support or refute it? This is the same operation the\nanswer verifier performs when it checks a generated sentence against a cited\npassage. Measured with precision, recall and F1 against the gold lines.\n\nTask B, claim verification: is the statement entailed or contradicted? A\nlightweight, fully local classifier built on the verifier's own signals\n(lexical support, numeric agreement, negation and quantifier mismatch) is\ntrained on the official training split and tested on the gold test split.\nReported honestly against a majority baseline: this shows how far simple\ngrounding checks go and where a dedicated NLI model would be needed.",
+  "splits": {
+    "train": 1700,
+    "dev": 200,
+    "test": 500
+  },
+  "evidence_selection": {
+    "tuned_threshold": 0.0,
+    "threshold_curve_train_dev": [
+      {
+        "threshold": 0.0,
+        "f1": 0.7078,
+        "precision": 0.6587,
+        "recall": 0.9998
+      },
+      {
+        "threshold": 0.05,
+        "f1": 0.4586,
+        "precision": 0.7585,
+        "recall": 0.4452
+      },
+      {
+        "threshold": 0.1,
+        "f1": 0.4561,
+        "precision": 0.765,
+        "recall": 0.4364
+      },
+      {
+        "threshold": 0.15,
+        "f1": 0.4467,
+        "precision": 0.7772,
+        "recall": 0.4134
+      },
+      {
+        "threshold": 0.2,
+        "f1": 0.4399,
+        "precision": 0.7975,
+        "recall": 0.3899
+      },
+      {
+        "threshold": 0.25,
+        "f1": 0.4301,
+        "precision": 0.8142,
+        "recall": 0.3675
+      },
+      {
+        "threshold": 0.3,
+        "f1": 0.4214,
+        "precision": 0.8281,
+        "recall": 0.3503
+      },
+      {
+        "threshold": 0.35,
+        "f1": 0.4101,
+        "precision": 0.8416,
+        "recall": 0.3312
+      },
+      {
+        "threshold": 0.4,
+        "f1": 0.3988,
+        "precision": 0.8532,
+        "recall": 0.3139
+      },
+      {
+        "threshold": 0.45,
+        "f1": 0.3887,
+        "precision": 0.8614,
+        "recall": 0.2998
+      },
+      {
+        "threshold": 0.5,
+        "f1": 0.3777,
+        "precision": 0.8716,
+        "recall": 0.285
+      },
+      {
+        "threshold": 0.55,
+        "f1": 0.3627,
+        "precision": 0.8761,
+        "recall": 0.2678
+      },
+      {
+        "threshold": 0.6,
+        "f1": 0.3466,
+        "precision": 0.8807,
+        "recall": 0.25
+      },
+      {
+        "threshold": 0.65,
+        "f1": 0.3276,
+        "precision": 0.8897,
+        "recall": 0.2304
+      },
+      {
+        "threshold": 0.7,
+        "f1": 0.3085,
+        "precision": 0.8981,
+        "recall": 0.2123
+      },
+      {
+        "threshold": 0.75,
+        "f1": 0.3028,
+        "precision": 0.9029,
+        "recall": 0.2066
+      },
+      {
+        "threshold": 0.8,
+        "f1": 0.3001,
+        "precision": 0.9041,
+        "recall": 0.2043
+      }
+    ],
+    "test": {
+      "pairs": 771,
+      "precision": 0.7137,
+      "recall": 0.9994,
+      "f1": 0.7516,
+      "baseline_select_all": {
+        "precision": 0.7136,
+        "recall": 1.0,
+        "f1": 0.7519
+      }
+    }
+  },
+  "evidence_ranking_test": {
+    "pairs": 683,
+    "mean_average_precision": 0.8804,
+    "mean_average_precision_random": 0.7229,
+    "precision_at_3": 0.8048,
+    "precision_at_3_random": 0.6745
+  },
+  "claim_verification_test": {
+    "accuracy": 0.57,
+    "macro_f1": 0.5674,
+    "entailment_precision": 0.5829,
+    "entailment_recall": 0.492,
+    "majority_baseline_accuracy": 0.5
+  },
+  "interpretation": "NLI4CT gold evidence often spans most of a section, so selecting every line is a strong set based baseline; the line ranker is better judged by ranking quality, where it places gold lines well above a random ordering. Claim verification from lexical and numeric signals alone is only modestly above chance, because NLI4CT statements hinge on arithmetic, comparison and paraphrase. Oncora Nexus therefore treats its verifier as a guard against unsupported and numerically invented sentences, not as proof of entailment."
+}

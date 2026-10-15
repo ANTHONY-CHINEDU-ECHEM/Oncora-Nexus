@@ -1,0 +1,20 @@
+{
+  "trials": 999,
+  "structured_criteria": 7068,
+  "criteria_per_trial": 7.08,
+  "by_type": {
+    "setting": 2059,
+    "prior_therapy": 2018,
+    "pregnancy": 581,
+    "ecog": 517,
+    "her2": 419,
+    "age": 373,
+    "brain_mets": 366,
+    "menopause": 305,
+    "hormone": 275,
+    "lvef": 133,
+    "brca": 22
+  },
+  "manual_review_lines": 8730,
+  "unparsed_lines": 9142
+}

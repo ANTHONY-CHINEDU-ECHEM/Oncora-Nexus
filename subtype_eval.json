@@ -1,0 +1,762 @@
+{
+ "expression_pam50": {
+  "n": 1974,
+  "genes": [
+   "ACTR3B",
+   "ANLN",
+   "BAG1",
+   "BCL2",
+   "BIRC5",
+   "BLVRA",
+   "CCNB1",
+   "CCNE1",
+   "CDC20",
+   "CDC6",
+   "CDH3",
+   "CENPF",
+   "CEP55",
+   "CXXC5",
+   "EGFR",
+   "ERBB2",
+   "ESR1",
+   "EXO1",
+   "FGFR4",
+   "FOXA1",
+   "FOXC1",
+   "GPR160",
+   "GRB7",
+   "KIF2C",
+   "KRT14",
+   "KRT17",
+   "KRT5",
+   "MAPT",
+   "MDM2",
+   "MELK",
+   "MIA",
+   "MKI67",
+   "MLPH",
+   "MMP11",
+   "MYBL2",
+   "MYC",
+   "NAT1",
+   "NDC80",
+   "NUF2",
+   "ORC6",
+   "PGR",
+   "PHGDH",
+   "PTTG1",
+   "RRM2",
+   "SFRP1",
+   "SLC39A6",
+   "TMEM45B",
+   "TYMS",
+   "UBE2C",
+   "UBE2T"
+  ],
+  "class_counts": {
+   "LumA": 700,
+   "LumB": 475,
+   "Her2": 224,
+   "Basal": 209,
+   "claudin-low": 218,
+   "Normal": 148
+  },
+  "logistic_regression_cv": {
+   "accuracy": 0.7725,
+   "balanced_accuracy": 0.7592,
+   "macro_f1": 0.7381,
+   "cohen_kappa": 0.7113,
+   "per_class": {
+    "LumA": {
+     "precision": 0.8908,
+     "recall": 0.7571,
+     "f1-score": 0.8185,
+     "support": 700.0
+    },
+    "LumB": {
+     "precision": 0.8337,
+     "recall": 0.8547,
+     "f1-score": 0.8441,
+     "support": 475.0
+    },
+    "Her2": {
+     "precision": 0.7229,
+     "recall": 0.8036,
+     "f1-score": 0.7611,
+     "support": 224.0
+    },
+    "Basal": {
+     "precision": 0.7596,
+     "recall": 0.756,
+     "f1-score": 0.7578,
+     "support": 209.0
+    },
+    "claudin-low": {
+     "precision": 0.6486,
+     "recall": 0.6606,
+     "f1-score": 0.6545,
+     "support": 218.0
+    },
+    "Normal": {
+     "precision": 0.5023,
+     "recall": 0.723,
+     "f1-score": 0.5928,
+     "support": 148.0
+    }
+   },
+   "confusion_matrix": {
+    "labels": [
+     "LumA",
+     "LumB",
+     "Her2",
+     "Basal",
+     "claudin-low",
+     "Normal"
+    ],
+    "matrix": [
+     [
+      530,
+      53,
+      17,
+      4,
+      20,
+      76
+     ],
+     [
+      32,
+      406,
+      27,
+      1,
+      8,
+      1
+     ],
+     [
+      7,
+      19,
+      180,
+      8,
+      7,
+      3
+     ],
+     [
+      0,
+      2,
+      13,
+      158,
+      29,
+      7
+     ],
+     [
+      6,
+      7,
+      10,
+      32,
+      144,
+      19
+     ],
+     [
+      20,
+      0,
+      2,
+      5,
+      14,
+      107
+     ]
+    ]
+   }
+  },
+  "nearest_centroid_cv": {
+   "accuracy": 0.7097,
+   "balanced_accuracy": 0.6782,
+   "macro_f1": 0.6497,
+   "cohen_kappa": 0.6292,
+   "per_class": {
+    "LumA": {
+     "precision": 0.8261,
+     "recall": 0.7329,
+     "f1-score": 0.7767,
+     "support": 700.0
+    },
+    "LumB": {
+     "precision": 0.749,
+     "recall": 0.8232,
+     "f1-score": 0.7844,
+     "support": 475.0
+    },
+    "Her2": {
+     "precision": 0.6509,
+     "recall": 0.7991,
+     "f1-score": 0.7174,
+     "support": 224.0
+    },
+    "Basal": {
+     "precision": 0.7,
+     "recall": 0.7703,
+     "f1-score": 0.7335,
+     "support": 209.0
+    },
+    "claudin-low": {
+     "precision": 0.6353,
+     "recall": 0.2477,
+     "f1-score": 0.3564,
+     "support": 218.0
+    },
+    "Normal": {
+     "precision": 0.4274,
+     "recall": 0.6959,
+     "f1-score": 0.5296,
+     "support": 148.0
+    }
+   },
+   "confusion_matrix": {
+    "labels": [
+     "LumA",
+     "LumB",
+     "Her2",
+     "Basal",
+     "claudin-low",
+     "Normal"
+    ],
+    "matrix": [
+     [
+      513,
+      83,
+      15,
+      0,
+      2,
+      87
+     ],
+     [
+      56,
+      391,
+      28,
+      0,
+      0,
+      0
+     ],
+     [
+      9,
+      28,
+      179,
+      0,
+      5,
+      3
+     ],
+     [
+      1,
+      5,
+      26,
+      161,
+      14,
+      2
+     ],
+     [
+      21,
+      12,
+      17,
+      68,
+      54,
+      46
+     ],
+     [
+      21,
+      3,
+      10,
+      1,
+      10,
+      103
+     ]
+    ]
+   }
+  },
+  "top_genes_per_subtype": {
+   "Basal": [
+    {
+     "gene": "FOXC1",
+     "weight": 0.709
+    },
+    {
+     "gene": "SFRP1",
+     "weight": 0.684
+    },
+    {
+     "gene": "PHGDH",
+     "weight": 0.615
+    },
+    {
+     "gene": "PGR",
+     "weight": 0.605
+    },
+    {
+     "gene": "KIF2C",
+     "weight": 0.582
+    },
+    {
+     "gene": "ANLN",
+     "weight": 0.438
+    }
+   ],
+   "Her2": [
+    {
+     "gene": "BIRC5",
+     "weight": 0.902
+    },
+    {
+     "gene": "RRM2",
+     "weight": 0.546
+    },
+    {
+     "gene": "FOXA1",
+     "weight": 0.513
+    },
+    {
+     "gene": "CDH3",
+     "weight": 0.473
+    },
+    {
+     "gene": "MMP11",
+     "weight": 0.471
+    },
+    {
+     "gene": "ERBB2",
+     "weight": 0.455
+    }
+   ],
+   "LumA": [
+    {
+     "gene": "FOXA1",
+     "weight": 1.053
+    },
+    {
+     "gene": "ESR1",
+     "weight": 0.844
+    },
+    {
+     "gene": "MLPH",
+     "weight": 0.736
+    },
+    {
+     "gene": "NAT1",
+     "weight": 0.69
+    },
+    {
+     "gene": "SLC39A6",
+     "weight": 0.657
+    },
+    {
+     "gene": "ERBB2",
+     "weight": 0.61
+    }
+   ],
+   "LumB": [
+    {
+     "gene": "FOXA1",
+     "weight": 1.032
+    },
+    {
+     "gene": "ESR1",
+     "weight": 0.896
+    },
+    {
+     "gene": "SLC39A6",
+     "weight": 0.746
+    },
+    {
+     "gene": "EXO1",
+     "weight": 0.617
+    },
+    {
+     "gene": "NAT1",
+     "weight": 0.565
+    },
+    {
+     "gene": "CCNB1",
+     "weight": 0.542
+    }
+   ],
+   "Normal": [
+    {
+     "gene": "CDC20",
+     "weight": 1.138
+    },
+    {
+     "gene": "KRT17",
+     "weight": 1.079
+    },
+    {
+     "gene": "MIA",
+     "weight": 0.861
+    },
+    {
+     "gene": "SFRP1",
+     "weight": 0.749
+    },
+    {
+     "gene": "FOXC1",
+     "weight": 0.744
+    },
+    {
+     "gene": "EGFR",
+     "weight": 0.645
+    }
+   ],
+   "claudin-low": [
+    {
+     "gene": "FOXC1",
+     "weight": 0.714
+    },
+    {
+     "gene": "CEP55",
+     "weight": 0.534
+    },
+    {
+     "gene": "MELK",
+     "weight": 0.445
+    },
+    {
+     "gene": "NDC80",
+     "weight": 0.418
+    },
+    {
+     "gene": "SFRP1",
+     "weight": 0.399
+    },
+    {
+     "gene": "BCL2",
+     "weight": 0.361
+    }
+   ]
+  }
+ },
+ "surrogate_pathology": {
+  "n": 1887,
+  "features": [
+   "er_positive",
+   "pr_positive",
+   "her2_positive",
+   "grade",
+   "age",
+   "npi"
+  ],
+  "gradient_boosting_cv": {
+   "accuracy": 0.4557,
+   "balanced_accuracy": 0.4267,
+   "macro_f1": 0.4218,
+   "cohen_kappa": 0.3067,
+   "per_class": {
+    "LumA": {
+     "precision": 0.5979,
+     "recall": 0.503,
+     "f1-score": 0.5463,
+     "support": 668.0
+    },
+    "LumB": {
+     "precision": 0.4135,
+     "recall": 0.4705,
+     "f1-score": 0.4401,
+     "support": 457.0
+    },
+    "Her2": {
+     "precision": 0.488,
+     "recall": 0.4789,
+     "f1-score": 0.4834,
+     "support": 213.0
+    },
+    "Basal": {
+     "precision": 0.5288,
+     "recall": 0.534,
+     "f1-score": 0.5314,
+     "support": 206.0
+    },
+    "claudin-low": {
+     "precision": 0.3195,
+     "recall": 0.2647,
+     "f1-score": 0.2895,
+     "support": 204.0
+    },
+    "Normal": {
+     "precision": 0.1963,
+     "recall": 0.3094,
+     "f1-score": 0.2402,
+     "support": 139.0
+    }
+   },
+   "confusion_matrix": {
+    "labels": [
+     "LumA",
+     "LumB",
+     "Her2",
+     "Basal",
+     "claudin-low",
+     "Normal"
+    ],
+    "matrix": [
+     [
+      336,
+      187,
+      19,
+      5,
+      24,
+      97
+     ],
+     [
+      137,
+      215,
+      33,
+      7,
+      15,
+      50
+     ],
+     [
+      16,
+      51,
+      102,
+      17,
+      17,
+      10
+     ],
+     [
+      5,
+      15,
+      23,
+      110,
+      45,
+      8
+     ],
+     [
+      26,
+      23,
+      23,
+      67,
+      54,
+      11
+     ],
+     [
+      42,
+      29,
+      9,
+      2,
+      14,
+      43
+     ]
+    ]
+   }
+  },
+  "logistic_regression_cv": {
+   "accuracy": 0.4621,
+   "balanced_accuracy": 0.4383,
+   "macro_f1": 0.4154,
+   "cohen_kappa": 0.3188,
+   "per_class": {
+    "LumA": {
+     "precision": 0.606,
+     "recall": 0.4835,
+     "f1-score": 0.5379,
+     "support": 668.0
+    },
+    "LumB": {
+     "precision": 0.4302,
+     "recall": 0.4923,
+     "f1-score": 0.4592,
+     "support": 457.0
+    },
+    "Her2": {
+     "precision": 0.5204,
+     "recall": 0.5399,
+     "f1-score": 0.53,
+     "support": 213.0
+    },
+    "Basal": {
+     "precision": 0.5326,
+     "recall": 0.7136,
+     "f1-score": 0.61,
+     "support": 206.0
+    },
+    "claudin-low": {
+     "precision": 0.3571,
+     "recall": 0.098,
+     "f1-score": 0.1538,
+     "support": 204.0
+    },
+    "Normal": {
+     "precision": 0.1511,
+     "recall": 0.3022,
+     "f1-score": 0.2014,
+     "support": 139.0
+    }
+   },
+   "confusion_matrix": {
+    "labels": [
+     "LumA",
+     "LumB",
+     "Her2",
+     "Basal",
+     "claudin-low",
+     "Normal"
+    ],
+    "matrix": [
+     [
+      323,
+      181,
+      17,
+      1,
+      5,
+      141
+     ],
+     [
+      127,
+      225,
+      40,
+      0,
+      4,
+      61
+     ],
+     [
+      14,
+      41,
+      115,
+      26,
+      6,
+      11
+     ],
+     [
+      5,
+      16,
+      20,
+      147,
+      11,
+      7
+     ],
+     [
+      24,
+      32,
+      15,
+      97,
+      20,
+      16
+     ],
+     [
+      40,
+      28,
+      14,
+      5,
+      10,
+      42
+     ]
+    ]
+   }
+  },
+  "st_gallen_rule_baseline": {
+   "accuracy": 0.5008,
+   "balanced_accuracy": 0.4217,
+   "macro_f1": 0.3701,
+   "cohen_kappa": 0.3434,
+   "per_class": {
+    "LumA": {
+     "precision": 0.6282,
+     "recall": 0.5793,
+     "f1-score": 0.6028,
+     "support": 668.0
+    },
+    "LumB": {
+     "precision": 0.3896,
+     "recall": 0.6061,
+     "f1-score": 0.4743,
+     "support": 457.0
+    },
+    "Her2": {
+     "precision": 0.5148,
+     "recall": 0.5728,
+     "f1-score": 0.5422,
+     "support": 213.0
+    },
+    "Basal": {
+     "precision": 0.4923,
+     "recall": 0.7718,
+     "f1-score": 0.6011,
+     "support": 206.0
+    },
+    "claudin-low": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1-score": 0.0,
+     "support": 204.0
+    },
+    "Normal": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1-score": 0.0,
+     "support": 139.0
+    }
+   },
+   "confusion_matrix": {
+    "labels": [
+     "LumA",
+     "LumB",
+     "Her2",
+     "Basal",
+     "claudin-low",
+     "Normal"
+    ],
+    "matrix": [
+     [
+      387,
+      258,
+      20,
+      3,
+      0,
+      0
+     ],
+     [
+      135,
+      277,
+      45,
+      0,
+      0,
+      0
+     ],
+     [
+      11,
+      48,
+      122,
+      32,
+      0,
+      0
+     ],
+     [
+      4,
+      23,
+      20,
+      159,
+      0,
+      0
+     ],
+     [
+      20,
+      51,
+      16,
+      117,
+      0,
+      0
+     ],
+     [
+      59,
+      54,
+      14,
+      12,
+      0,
+      0
+     ]
+    ]
+   }
+  }
+ },
+ "descriptions": {
+  "LumA": "Luminal A: hormone receptor rich, low proliferation, best prognosis, endocrine sensitive.",
+  "LumB": "Luminal B: hormone receptor positive with high proliferation; benefits more often from chemotherapy.",
+  "Her2": "HER2 enriched: driven by the ERBB2 amplicon; candidate for HER2 targeted therapy.",
+  "Basal": "Basal like: mostly triple negative, high grade, chemotherapy sensitive, early relapse risk.",
+  "claudin-low": "Claudin low: low cell adhesion genes, immune and stem cell features, usually triple negative.",
+  "Normal": "Normal like: resembles normal breast tissue; often reflects low tumour content in the sample."
+ }
+}
