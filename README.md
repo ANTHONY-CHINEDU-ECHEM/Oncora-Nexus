@@ -1,8 +1,11 @@
 # Oncora Nexus
 
-**Evidence grounded decision support for breast cancer multidisciplinary teams.** Oncora Nexus prepares a case for the tumour board in one place: treatment pathway options distilled from curated guidance, relapse risk from externally validated survival models, a molecular subtype estimate, eligible clinical trials screened criterion by criterion, and a retrieval augmented evidence copilot whose every sentence is checked against the passage it cites. Everything runs on local infrastructure with an open source language model, so no patient information leaves the hospital network.
+**Evidence grounded decision support for breast cancer multidisciplinary teams.** 
 
-![Oncora Nexus case workspace](docs/images/case_brief.png)
+Oncora Nexus prepares a case for the tumour board in one place: treatment pathway options distilled from curated guidance, relapse risk from externally validated survival models, a molecular subtype estimate, eligible clinical trials screened criterion by criterion, and a retrieval augmented evidence copilot whose every sentence is checked against the passage it cites. Everything runs on local infrastructure with an open source language model, so no patient information leaves the hospital network.
+<p align="center">
+<img width="2160" height="1440" alt="case_brief" src="https://github.com/user-attachments/assets/fef4f7bc-3023-4435-9488-6c0dbc6937fb" />
+</p>
 
 ## Project brief
 
@@ -36,17 +39,34 @@ The interface ships with two engines behind one API contract. When the FastAPI s
 
 ## Screenshots
 
-| Evidence copilot with traced citations | Prognosis with feature drivers |
-|---|---|
-| ![Copilot](docs/images/copilot.png) | ![Prognosis](docs/images/case_prognosis.png) |
-| **Trial screening with protocol line evidence** | **Cohort explorer** |
-| ![Trials](docs/images/case_trials.png) | ![Cohorts](docs/images/cohorts.png) |
-| **Model governance** | **Dark theme** |
-| ![Governance](docs/images/governance.png) | ![Dark](docs/images/dark_prognosis.png) |
+Evidence copilot with traced citations 
+
+<img width="2160" height="1440" alt="copilot" src="https://github.com/user-attachments/assets/eac10ae6-c12a-4a4d-b5ed-fabd0d2d3e47" />
+
+Prognosis with feature drivers 
+
+<img width="2160" height="1440" alt="case_prognosis" src="https://github.com/user-attachments/assets/ea4ec84d-696e-419a-93e6-3c6321b878fb" />
+
+Trial screening with protocol line evidence
+
+<img width="2160" height="1440" alt="case_trials" src="https://github.com/user-attachments/assets/95daba9d-c8b1-44b5-8062-539b06f55fe1" />
+
+Cohort explorer
+
+<img width="2160" height="1440" alt="cohorts" src="https://github.com/user-attachments/assets/3044ea97-c320-4c17-a1f2-282d5d602d77" />
+
+Model governance
+
+<img width="2160" height="1440" alt="governance" src="https://github.com/user-attachments/assets/b9441529-241d-4df9-9d3c-e1b80a110645" />
+
+Dark theme
+
+<img width="2160" height="1440" alt="dark_prognosis" src="https://github.com/user-attachments/assets/3b053f3c-ab73-4728-b873-5c3058e0d37d" />
 
 The layout adapts to a phone, where the evidence column stacks beneath the answer:
 
-<img src="docs/images/mobile_copilot.png" alt="Mobile view" width="300" />
+<img width="780" height="1688" alt="mobile_copilot" src="https://github.com/user-attachments/assets/8858caca-9f6c-42f3-8603-d2903d8646a0" />
+
 
 ## Architecture
 
@@ -135,7 +155,8 @@ Mean reciprocal rank at 10 and recall at 5 by retriever. The blind set of 20 que
 | **Hybrid fusion with learned reranker** | **0.95** | **0.777** | **0.84** | **0.770** | 0.921 |
 | Browser engine (BM25 with lexical reranker) | 0.85 | 0.721 | 0.82 | 0.720 | 0.943 |
 
-![Retrieval ablation](reports/figures/retrieval_ablation.png)
+<img width="2268" height="612" alt="retrieval_ablation" src="https://github.com/user-attachments/assets/803d7aa4-9e10-4e1a-8029-03ccc5fead1a" />
+
 
 The learned reranker is the single most valuable retrieval component: on clinician style questions it lifts recall at 5 from 0.80 to 0.95 over plain fusion, because naive fusion lets a weak dense signal demote good lexical matches while the reranker learns how much to trust each signal. Plain BM25 wins the known item test, as it should when queries are sampled from the document itself, which is why that test alone would have been a misleading guide. Mean query latency for the full hybrid pipeline is about 5 ms.
 
@@ -162,15 +183,15 @@ The line ranker reliably surfaces the lines that support or refute a statement, 
 | Gradient boosted survival | 0.651 ± 0.021 | 0.673 | 0.160 |
 | Nottingham Prognostic Index | 0.641 ± 0.022 | 0.659 | not applicable |
 
-![Discrimination](reports/figures/discrimination.png)
+<img width="1800" height="612" alt="discrimination" src="https://github.com/user-attachments/assets/8ff514d1-7843-40db-9e7b-fbfb5b1a8d6d" />
 
-![Risk groups](reports/figures/survival_risk_groups.png)
+<img width="1890" height="702" alt="survival_risk_groups" src="https://github.com/user-attachments/assets/8509b357-705b-439b-9f4b-53d7e71ddc55" />
 
-![Calibration](reports/figures/calibration.png)
+<img width="1656" height="720" alt="calibration" src="https://github.com/user-attachments/assets/417041a3-8705-4480-8fe0-428e34f6a69d" />
 
 Three findings matter for deployment. First, the model adds a consistent but modest gain over NPI (0.669 against 0.659 externally, and 0.666 against 0.641 in sample on node positive METABRIC patients), so its value lies in individualised curves and explanations more than in better ranking. Second, the tree ensembles do not beat the Cox model on calibration, which justifies deploying the interpretable model. Third, calibration is excellent internally but optimistic on GBSG2, where observed five year relapse free survival sits 12 to 17 points below prediction in every risk quintile. Discrimination transfers between populations; absolute risk does not. The interface therefore states that estimates must be reconciled with PREDICT Breast, and the model card recommends local recalibration before any clinical use. Positive nodes (hazard ratio 1.64 per log unit), grade (1.22 per grade) and tumour size (1.12 per centimetre) dominate, matching both the permutation importance of the forest and the structure of NPI.
 
-![Hazard ratios](reports/figures/hazard_ratios.png)
+<img width="1296" height="684" alt="hazard_ratios" src="https://github.com/user-attachments/assets/8c887e80-45af-4fbd-9139-bda3ff3bfd97" />
 
 ### Molecular subtype
 
@@ -181,11 +202,11 @@ Three findings matter for deployment. First, the model adds a consistent but mod
 | Routine pathology, logistic regression | 0.46 | 0.42 | 0.32 |
 | St Gallen surrogate rules | 0.50 | 0.37 | 0.34 |
 
-![Subtype confusion](reports/figures/subtype_confusion.png)
+<img width="1908" height="774" alt="subtype_confusion" src="https://github.com/user-attachments/assets/6d8600d9-d73f-4f66-85eb-5d6c7f73ef20" />
 
 A compact expression model reproduces the reference PAM50 call well, but routine pathology recovers the molecular subtype for fewer than half of patients, confusing Luminal A, Luminal B and Normal like tumours most often. For an MDT this is an actionable message: when the surrogate probabilities are close, a genomic assay is the test most likely to change the label. Subtype also carries strong prognostic signal in METABRIC, with ten year relapse free survival ranging from 73 percent for Luminal A to 49 percent for HER2 enriched disease (log rank p below 0.000001).
 
-![Subtype survival](reports/figures/subtype_survival.png)
+<img width="1512" height="756" alt="subtype_survival" src="https://github.com/user-attachments/assets/168311d7-0a9d-4d2b-8577-20f81a717483" />
 
 ### Trial screening
 
